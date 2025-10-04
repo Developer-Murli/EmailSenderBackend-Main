@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#Spring Property ignore File
+application-dev.properties
