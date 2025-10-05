@@ -31,7 +31,7 @@ import jakarta.mail.internet.MimeMessage;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-  @Value("${spring.mail.username}")
+  @Value("${spring.mail.from}")
   private String userFrom;
 
   @Autowired
@@ -66,7 +66,7 @@ public class EmailServiceImpl implements EmailService {
       mailMessage.setTo(to);
       mailMessage.setSubject(subject);
       mailMessage.setText(message);
-      mailMessage.setFrom("murlivishwakarma660@gmail.com");
+      mailMessage.setFrom(userFrom);
       mailSender.send(mailMessage);
       logger.info("Mail Successfully sent to multiple users" + to.length);
 
@@ -86,7 +86,7 @@ public class EmailServiceImpl implements EmailService {
       mimeMessageHelper.setTo(to);
       mimeMessageHelper.setSubject(subject);
       mimeMessageHelper.setText(htmlContant, true);
-      mimeMessageHelper.setFrom("murlivishwakarma660@gmail.com");
+      mimeMessageHelper.setFrom(userFrom);
       mailSender.send(simpleMailMessage);
       logger.info("Mail Send Succefully " + htmlContant);
 
@@ -103,7 +103,7 @@ public class EmailServiceImpl implements EmailService {
       mimeMessageHelper.setTo(to);
       mimeMessageHelper.setSubject(subject);
       mimeMessageHelper.setText(message);
-      mimeMessageHelper.setFrom("murlivishwakarma660@gmail.com");
+      mimeMessageHelper.setFrom(userFrom);
       mimeMessageHelper.addAttachment(file.getName(), file);
       mailSender.send(simplMimeMessage);
       logger.info("Mail Send Successfully with attachment to " + to);
@@ -122,7 +122,7 @@ public class EmailServiceImpl implements EmailService {
       mimeMessageHelper.setTo(to);
       mimeMessageHelper.setSubject(subject);
       mimeMessageHelper.setText(message, true);
-      mimeMessageHelper.setFrom("murlivishwakarma660@gmail.com");
+      mimeMessageHelper.setFrom(userFrom);
       File file = new File("test2.png");
       Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
