@@ -31,6 +31,9 @@ import jakarta.mail.internet.MimeMessage;
 @Service
 public class EmailServiceImpl implements EmailService {
 
+  @Value("${spring.mail.username}")
+  private String userFrom;
+
   @Autowired
   private JavaMailSender mailSender;
 
@@ -44,7 +47,7 @@ public class EmailServiceImpl implements EmailService {
       mailMessage.setTo(to);
       mailMessage.setSubject(subject);
       mailMessage.setText(message);
-      mailMessage.setFrom("murlivishwakarma660@gmail.com");
+      mailMessage.setFrom(userFrom);
       mailSender.send(mailMessage);
 
       logger.info("Message sent successfully to " + to);

@@ -34,3 +34,4 @@ build/
 
 #Spring Property ignore File
 application-dev.properties
+.env
